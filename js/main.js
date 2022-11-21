@@ -1,11 +1,13 @@
 $(document).ready(function () {
+  //Load page consts
+  $("#dishes-list").load("/html/templates.html #card-template");
+
   LoadDishes();
 });
 
 function LoadDishes() {
   $("#dishes-list").empty();
-  $("#dishes-list").load("/html/templates.html #card-template");
-  fetch("https://food-delivery.kreosoft.ru/api/dish")
+  fetch(`${ApiURL}/dish`)
     .then((response) => {
       return response.json();
     })
