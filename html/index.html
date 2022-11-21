@@ -37,10 +37,10 @@
       </nav>
     </header>
     <main>
-      <div class="col-md-6 mx-auto w-50 shadow p-3" id="registration-form">
+      <div class="container shadow p-3" id="registration-form">
         <h1>Регистрация нового пользователя</h1>
         <div class="mb-3">
-          <label for="credentials" class="form-label">ФИО</label>
+          <label for="credentials" class="form-label">Ф.И.О.</label>
           <input type="text" class="form-control" id="credentials" required />
         </div>
         <div class="mb-3">
@@ -77,7 +77,12 @@
         </div>
         <div class="mb-3">
           <label for="address" class="form-label">Адрес</label>
-          <input type="text" class="form-control" id="address" required />
+          <input
+            type="text"
+            class="form-control"
+            id="address"
+            placeholder="г. Томск, ул. Ленина, д. 999"
+          />
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
