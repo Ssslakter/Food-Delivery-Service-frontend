@@ -1,0 +1,22 @@
+<!-- Food card template -->
+<div class="card d-none" style="width: 22rem" id="card-template">
+  <img
+    src="/images/image_not_found.png"
+    onerror="if (this.src != '/images/image_not_found.png') this.src = '/images/image_not_found.png';"
+    class="card-img-top dish-image"
+    alt=""
+  />
+  <div class="card-body">
+    <h5 class="card-title dish-title"></h5>
+    <p class="card-subtitle text-muted dish-category"></p>
+    <div class="border border-2 rounded">Звезды</div>
+    <div class="overflow-auto" style="height: 200px">
+      <p class="card-text dish-description"></p>
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-between">
+    <p class="card-text h6 dish-price"></p>
+    <button type="button" class="btn btn-primary btn-sm">В корзину</button>
+  </div>
+  <link rel="stylesheet" href="/css/rating.css" />
+</div>
