@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   AddNavigationListeners();
   //Load main page
@@ -6,12 +7,27 @@ $(document).ready(function () {
 
 function LoadPage(url) {
   $("main").empty();
-  if (url == "/") {
-    $("main").load(`/html/main.html`);
-    return;
+  switch (url) {
+    case "/":
+      $("main").load(`/html/main.html`);
+      break;
+    case "/login/":
+      LoadLoginPage();
+      break;
+    default:
+      var name = url.replaceAll("/", "");
+      $("main").load(`/html/${name}.html`);
+      break;
   }
-  var name = url.replaceAll("/", "");
-  $("main").load(`/html/${name}.html`);
+  history.pushState(null, null, url);
+}
+
+function LoadLoginPage() {
+  $("main").load(`/html/login.html`);
+  let loginText = $("#user-login")
+  loginText.html("Регистрация")
+  loginText.attr("href", "/registration")
+  loginText.removeClass("d-none");
 }
 
 function AddNavigationListeners() {
@@ -20,8 +36,7 @@ function AddNavigationListeners() {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       var url = $(e.target).attr("href");
-      history.pushState(null, null, url);
-      LoadPage(location.pathname);
+      LoadPage(url);
     });
   }
 }
