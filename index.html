@@ -15,48 +15,51 @@
       rel="stylesheet"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/picker.min.css" />
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100">
     <header>
-      <nav class="navbar navbar-expand navbar-light bg-light ms-auto">
+      <nav class="navbar navbar-expand-md navbar-light bg-light ms-auto">
         <div class="container-fluid">
-          <div class="nav navbar-nav">
-            <a class="navbar-brand" href="/" aria-current="page"
-              >Delivery Кушац <span class="visually-hidden">(current)</span></a
-            >
-            <a class="nav-item nav-link" href="/">Меню</a>
-            <a class="nav-item nav-link" href="/orders/">Заказы</a>
-            <a class="nav-item nav-link" href="/cart/">Корзина</a>
-          </div>
-          <div class="nav navbar-nav">
-            <a
-              class="nav-item nav-link mr-auto d-none"
-              href="/profile"
-              id="user-login"
-            ></a>
-            <a class="nav-item nav-link" href="/login/" id="exit">Войти</a>
+          <a class="navbar-brand" href="/" aria-current="page"
+            >Delivery Кушац <span class="visually-hidden">(current)</span></a
+          >
+          <div class="navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item"><a class="nav-link" href="/">Меню</a></li>
+              <li class="nav-item">
+                <a class="nav-link" href="/orders/">Заказы</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/cart/">Корзина</a>
+              </li>
+            </ul>
+            <div class="d-flex">
+              <a
+                class="nav-item nav-link mr-auto d-none me-3"
+                href="/profile"
+                id="user-login"
+              ></a>
+              <a class="nav-item nav-link" href="/login/" id="exit">Войти</a>
+            </div>
           </div>
         </div>
       </nav>
     </header>
-    <main></main>
-    <footer class="fixed-bottom bg-light text-center text-lg-start">
-      <!-- Copyright -->
-      <div
-        class="text-center p-3"
-        style="background-color: rgba(151, 151, 151, 0.2)"
-      >
-        © 2022 - Delivery Кушац
+    <main class="flex-shrink-0"></main>
+    <footer class="sticky-bottom footer mt-auto py-3 bg-light">
+      <div class="container">
+        <span class="text-muted">© 2022 - Delivery Кушац</span>
       </div>
     </footer>
 
     <!-- Bootstrap JS Libraries and JQuery-->
-    <script src="/js/jquery-3.6.1.min.js"></script>
-    <script src="/js/bootstrap/popper.min.js" crossorigin="anonymous"></script>
-    <script src="/js/bootstrap/bootstrap.min.js"></script>
+    <script src="/js/tools/jquery-3.6.1.min.js"></script>
+    <script src="/js/tools/popper.min.js" crossorigin="anonymous"></script>
+    <script src="/js/tools/bootstrap.min.js"></script>
     <!-- Main scripts -->
-    <script src="/js/index.js"></script>
+    <script src="/js/index.js" type="module"></script>
     <script src="/js/utils.js"></script>
   </body>
 </html>
