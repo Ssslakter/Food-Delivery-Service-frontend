@@ -1,22 +1,30 @@
+import { initMain } from "/js/main.js"
+import { initLogin } from "/js/login.js"
 
 $(document).ready(function () {
-  AddNavigationListeners();
+  AddClickListeners((e) => {
+    e.preventDefault();
+    var url = $(e.target).attr("href");
+    LoadPage(url);
+  });
   //Load main page
   LoadPage(location.pathname);
 });
 
-function LoadPage(url) {
+export function LoadPage(url) {
   $("main").empty();
   switch (url) {
     case "/":
-      $("main").load(`/html/main.html`);
+      $("main").load(`/html/main.html`, initMain);
       break;
     case "/login/":
-      LoadLoginPage();
+      $("main").load(`/html/login.html`, initLogin);
       break;
     default:
-      var name = url.replaceAll("/", "");
-      $("main").load(`/html/${name}.html`);
+      if (url in endpoints) {
+        var name = url.replaceAll("/", "");
+        $("main").load(`/html/${name}.html`);
+      }
       break;
   }
   history.pushState(null, null, url);
@@ -30,13 +38,4 @@ function LoadLoginPage() {
   loginText.removeClass("d-none");
 }
 
-function AddNavigationListeners() {
-  var all = $("a");
-  for (const link of all) {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      var url = $(e.target).attr("href");
-      LoadPage(url);
-    });
-  }
-}
+
