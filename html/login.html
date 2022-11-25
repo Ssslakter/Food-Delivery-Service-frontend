@@ -1,0 +1,31 @@
+<main>
+  <div class="container shadow p-3" id="registration-form">
+    <h1>Авторизация</h1>
+    <form>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          placeholder="name@example.com"
+          aria-describedby="emailHelpId"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Пароль</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          id="password"
+          required
+        />
+      </div>
+      <button type="button" class="btn btn-primary" id="login">Войти</button>
+    </form>
+  </div>
+  <script src="/js/login.js"></script>
+</main>
