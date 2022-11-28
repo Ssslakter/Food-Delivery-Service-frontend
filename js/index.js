@@ -13,13 +13,13 @@ $(document).ready(function () {
 });
 
 export function LoadPage(url) {
-  history.pushState(null, null, url);
+  const queryString = window.location.search;
+  console.log(queryString);
   $("main").empty();
   const address = url.substring(1).split('/');
-  console.log(address);
   switch (address[0]) {
     case '':
-      $("main").load(`/html/main.html`, initMain);
+      $("main").load(`/html/main.html`, () => initMain(queryString));
       break;
     case "login":
       $("main").load(`/html/login.html`, initLogin);
@@ -31,15 +31,10 @@ export function LoadPage(url) {
       $("main").load(`/html/item.html`, initItem);
       break;
     default:
-      if (url in endpoints) {
-        var name = url.replaceAll("/", "");
-        $("main").load(`/html/${name}.html`);
-      }
-      else {
-        $("main").load('/html/notFound.html');
-      }
+      $("main").load('/html/notFound.html');
       break;
   }
+  history.pushState(null, null, url);
 }
 
 export function LoadNotFoundPage() {
