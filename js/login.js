@@ -14,12 +14,12 @@ function LoadLoginPage() {
 
 function AddLoginListener() {
   $("#login").click(() => {
-    console.log("fdlfkdl");
     var data = $('form').serializeArray();
     data = ToJsObject(data);
     userEmail = data.email
-    Post(`/account/login`, data)
-      .then((response) => {
+    Post(`/account/login`, data).then(async (resp) => {
+      if (resp.ok) {
+        response = await resp.json()
         userToken = response.token
         let loginText = $("#user-login");
         loginText.html(userEmail)
@@ -27,9 +27,23 @@ function AddLoginListener() {
         $("#exit").html("Выйти");
         LoadPage('/');
         console.log(userToken)
-      }).catch(
-        e => console.error(e)
-      )
+      }
+    }).catch(
+      e => console.error(e)
+    )
   });
 }
 
+function changeHeaderText(isLogging) {
+  let loginText = $("#user-login");
+  if (isLogging) {
+    loginText.html(userEmail)
+    loginText.removeClass("d-none");
+    $("#exit").html("Выйти");
+  }
+  else {
+    loginText.html("")
+    loginText.addClass("d-none");
+    $("#exit").html("Войти");
+  }
+}
