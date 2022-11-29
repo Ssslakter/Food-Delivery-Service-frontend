@@ -1,5 +1,5 @@
 import { initLogin } from './login.js'
-//import { initReg } from './registration.js'
+import { initRegistration } from './registration.js'
 //import { initOrders } from './orders.js'
 //import { initPurch } from './purchase.js'
 import { initMain } from "./main.js"
@@ -9,7 +9,7 @@ export class PageLoader {
 
     static endpoints = {
         login: initLogin,
-        registration: null,
+        registration: initRegistration,
         profile: null,
         item: initItem,
         cart: null,
