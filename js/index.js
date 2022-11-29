@@ -1,53 +1,27 @@
-import { initMain } from "/js/main.js"
-import { initLogin, changeHeaderText } from "/js/login.js"
-import { initItem } from "/js/item.js"
-
+import { PageLoader } from "./loader.js";
+import { Logout } from './login.js'
 $(document).ready(function () {
-  AddClickListeners((e) => {
-    e.preventDefault();
-    var url = $(e.target).attr("href");
-    LoadPage(url);
-  });
+  AddClickListeners();
   //Load main page
-  LoadPage(location.pathname);
+  PageLoader.loadPage(location.pathname, location.search);
 });
 
-export function LoadPage(url) {
-  const queryString = window.location.search;
-  console.log(queryString);
-  $("main").empty();
-  const address = url.substring(1).split('/');
-  switch (address[0]) {
-    case '':
-    case 'index.html':
-      $("main").load(`/html/main.html`, () => {
-        initMain(queryString);
-        changeHeaderText(window.localStorage.getItem('userEmail'))
-      });
-      break;
-    case "login":
-      $("main").load(`/html/login.html`, initLogin);
-      break;
-    case "registration":
-      $("main").load(`/html/registration.html`);
-      break;
-    case "item":
-      $("main").load(`/html/item.html`, initItem);
-      break;
-    default:
-      $("main").load('/html/notFound.html');
-      break;
-  }
-  history.pushState(null, null, url);
-}
 
-export function LoadNotFoundPage() {
-  $("main").load('/html/notFound.html');
-}
-
-function AddClickListeners(onClickFunc) {
+function AddClickListeners() {
   var all = $("a");
   for (const link of all) {
-    link.addEventListener("click", onClickFunc);
+    if (link.id != 'exit') {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        var url = $(e.target).attr("href");
+        PageLoader.loadPage(url);
+      });
+    }
+    else {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        Logout();
+      });
+    }
   }
 }

@@ -1,6 +1,8 @@
+import { FillDishInfo } from "./item.js";
+
 export function initMain(queryString) {
   //Load page consts
-  LoadDishes(queryString);
+  LoadDishes(queryString || '');
 }
 
 function LoadDishes(queryString) {

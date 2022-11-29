@@ -1,4 +1,4 @@
-import { LoadNotFoundPage } from "./index.js";
+import { PageLoader } from "./loader.js";
 
 export function initItem() {
     //Load page consts
@@ -14,7 +14,18 @@ function LoadDishInfo() {
             FillDishInfo($("#dish-page"), json);
         }
         else {
-            LoadNotFoundPage()
+            PageLoader.loadPage("notFound")
         }
     });
+}
+
+export function FillDishInfo(block, data) {
+    block.attr("data-id", data.id);
+    block.find(".dish-title").text(data.name);
+    block.find(".dish-category").text(`Категория блюда - ${data.category}`);
+    block.find(".dish-image").attr("src", data.image);
+    block.find(".dish-description").text(data.description);
+    block.find(".dish-vegetarian").text(data.vegetarian ? "Вегетарианское" : "Не вегетарианское")
+    block.find(".dish-price").text(`Цена - ${data.price} р.`);
+    block.removeClass("d-none");
 }

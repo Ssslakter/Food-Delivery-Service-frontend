@@ -1,8 +1,5 @@
 const ApiURL = "https://food-delivery.kreosoft.ru/api";
-var userToken = ""
-var userEmail = ""
 
-const endpoints = ["/login/", "/registration/", "/profile", "/item/", "/cart/", "/orders", "/order/", "/purchase"]
 
 function ToJsObject(arr) {
     var values = {};
@@ -49,7 +46,7 @@ async function Get(url, data) {
         body: JSON.stringify(data) || null,
         headers: new Headers({
             'Content-Type': 'application/json'
-        }),
+        })
     });
     return response;
 }
@@ -59,16 +56,5 @@ function AddClickListeners(onClickFunc) {
     for (const link of all) {
         link.addEventListener("click", onClickFunc);
     }
-}
-
-function FillDishInfo(block, data) {
-    block.attr("data-id", data.id);
-    block.find(".dish-title").text(data.name);
-    block.find(".dish-category").text(`Категория блюда - ${data.category}`);
-    block.find(".dish-image").attr("src", data.image);
-    block.find(".dish-description").text(data.description);
-    block.find(".dish-vegetarian").text(data.vegetarian ? "Вегетарианское" : "Не вегетарианское")
-    block.find(".dish-price").text(`Цена - ${data.price} р.`);
-    block.removeClass("d-none");
 }
 
