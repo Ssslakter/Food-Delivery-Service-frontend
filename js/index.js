@@ -1,5 +1,5 @@
 import { initMain } from "/js/main.js"
-import { initLogin } from "/js/login.js"
+import { initLogin, changeHeaderText } from "/js/login.js"
 import { initItem } from "/js/item.js"
 
 $(document).ready(function () {
@@ -19,7 +19,11 @@ export function LoadPage(url) {
   const address = url.substring(1).split('/');
   switch (address[0]) {
     case '':
-      $("main").load(`/html/main.html`, () => initMain(queryString));
+    case 'index.html':
+      $("main").load(`/html/main.html`, () => {
+        initMain(queryString);
+        changeHeaderText(window.localStorage.getItem('userEmail'))
+      });
       break;
     case "login":
       $("main").load(`/html/login.html`, initLogin);
