@@ -12,24 +12,38 @@ function LoadLoginPage() {
   loginText.removeClass("d-none");
 }
 
-function AddLoginListener() {
+async function AddLoginListener() {
   $("#login").click(() => {
-    console.log("fdlfkdl");
     var data = $('form').serializeArray();
     data = ToJsObject(data);
     userEmail = data.email
-    Post(`/account/login`, data)
-      .then((response) => {
+    Post(`/account/login`, data).then(async (resp) => {
+      if (resp.ok) {
+        let response = await resp.json()
         userToken = response.token
-        let loginText = $("#user-login");
-        loginText.html(userEmail)
-        loginText.removeClass("d-none");
-        $("#exit").html("Выйти");
+        window.localStorage.setItem('userToken', response.token)
+        window.localStorage.setItem('userEmail', userEmail);
         LoadPage('/');
         console.log(userToken)
-      }).catch(
-        e => console.error(e)
-      )
+      }
+    }).catch(
+      e => console.error(e)
+    )
   });
+}
+
+export function changeHeaderText(isLogging) {
+  let loginText = $("#user-login");
+  if (isLogging) {
+    loginText.html(window.localStorage.getItem('userEmail'))
+    loginText.removeClass("d-none");
+    loginText.attr("href", "/profile")
+    $("#exit").html("Выйти");
+  }
+  else {
+    loginText.html("")
+    loginText.addClass("d-none");
+    $("#exit").html("Войти");
+  }
 }
 

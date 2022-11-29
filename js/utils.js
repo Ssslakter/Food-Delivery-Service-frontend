@@ -15,7 +15,7 @@ function ToJsObject(arr) {
 async function Post(url, data) {
     let fullUrl = ApiURL + url;
     console.log(fullUrl);
-    const response = await fetch(fullUrl, {
+    var response = await fetch(fullUrl, {
         credentials: 'same-origin',
         method: 'POST',
         body: JSON.stringify(data),
@@ -23,13 +23,13 @@ async function Post(url, data) {
             'Content-Type': 'application/json'
         }),
     });
-    return await response.json();
+    return response;
 }
 
 async function Put(url, data) {
     let fullUrl = ApiURL + url;
     console.log(fullUrl);
-    const response = await fetch(fullUrl, {
+    var response = await fetch(fullUrl, {
         credentials: 'same-origin',
         method: 'PUT',
         body: JSON.stringify(data),
@@ -37,13 +37,13 @@ async function Put(url, data) {
             'Content-Type': 'application/json'
         }),
     });
-    return await response.json();
+    return response;
 }
 
 async function Get(url, data) {
     let fullUrl = ApiURL + url;
     console.log(fullUrl);
-    const response = await fetch(fullUrl, {
+    var response = await fetch(fullUrl, {
         credentials: 'same-origin',
         method: 'GET',
         body: JSON.stringify(data) || null,
@@ -51,7 +51,7 @@ async function Get(url, data) {
             'Content-Type': 'application/json'
         }),
     });
-    return await response.json();
+    return response;
 }
 
 function AddClickListeners(onClickFunc) {
@@ -60,3 +60,15 @@ function AddClickListeners(onClickFunc) {
         link.addEventListener("click", onClickFunc);
     }
 }
+
+function FillDishInfo(block, data) {
+    block.attr("data-id", data.id);
+    block.find(".dish-title").text(data.name);
+    block.find(".dish-category").text(`Категория блюда - ${data.category}`);
+    block.find(".dish-image").attr("src", data.image);
+    block.find(".dish-description").text(data.description);
+    block.find(".dish-vegetarian").text(data.vegetarian ? "Вегетарианское" : "Не вегетарианское")
+    block.find(".dish-price").text(`Цена - ${data.price} р.`);
+    block.removeClass("d-none");
+}
+

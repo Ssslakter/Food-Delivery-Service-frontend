@@ -1,29 +1,62 @@
-$(document).ready(function () {
+export function initMain(queryString) {
   //Load page consts
-  $("#dishes-list").load("/html/templates.html #card-template");
+  LoadDishes(queryString);
+}
 
-  LoadDishes();
-});
-
-function LoadDishes() {
+function LoadDishes(queryString) {
   $("#dishes-list").empty();
-  fetch(`${ApiURL}/dish`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((json) => {
+  $("#dishes-list").load("/html/templates.html #card-template");
+  Get(`/dish${queryString}`).then(async (response) => {
+    if (response.ok) {
+      let json = await response.json()
+      UpdatePagination(json.pagination)
       let template = $("#card-template");
       for (const dish of json.dishes) {
         let block = template.clone();
-        console.log(dish.id);
-        block.attr("data-id", dish.id);
-        block.find(".dish-title").text(dish.name);
-        block.find(".dish-category").text(`Категория блюда - ${dish.category}`);
-        block.find(".dish-image").attr("src", dish.image);
-        block.find(".dish-description").text(dish.description);
-        block.find(".dish-price").text(`Цена - ${dish.price} р.`);
-        block.removeClass("d-none");
+        FillDishInfo(block, dish)
+        block.find(".dish-link").attr("href", `item/${dish.id}`)
         $("#dishes-list").append(block);
       }
-    });
+    }
+  });
+}
+
+function UpdatePagination(pageData) {
+  let curr = pageData.current
+  $('#page-left').removeClass('disabled');
+  $('#page-right').removeClass('disabled');
+  if (curr == 1) {
+    $('#page-left').addClass('disabled');
+    ChangePageButtonState($(`#page-1`), curr, true)
+    ChangePageButtonState($(`#page-2`), curr + 1, false)
+    ChangePageButtonState($(`#page-3`), curr + 2, false)
+  }
+  else if (curr == pageData.count) {
+    $('#page-right').addClass('disabled')
+    ChangePageButtonState($(`#page-1`), curr - 2, false)
+    ChangePageButtonState($(`#page-2`), curr - 1, false)
+    ChangePageButtonState($(`#page-3`), curr, true)
+  }
+  else {
+    for (let i = -1; i <= 1; i++) {
+      ChangePageButtonState($(`#page-${i + 2}`), curr + i, i == 0)
+    }
+  }
+  ChangePageButtonState($(`#page-left`), curr - 1, false)
+  ChangePageButtonState($(`#page-right`), curr + 1, false)
+}
+
+function ChangePageButtonState(element, number, isActive) {
+  var s = element.children(".page-link").text();
+  if (s != ' « ' && s != ' » ') {
+    element.children(".page-link").text(number)
+  }
+  element.children(".page-link").attr('href', `?page=${number}`)
+  if (isActive) {
+    element.addClass('active')
+  }
+  else {
+    element.removeClass('active')
+  }
+
 }
