@@ -1,18 +1,21 @@
 import { FillDishInfo } from "./item.js";
+import { SetLinkListeners } from './loader.js';
 
 export function initMain(queryString) {
   //Load page consts
-  LoadDishes(queryString || '');
+  LoadDishes(queryString || '').then(
+    SetLinkListeners
+  );
 }
 
-function LoadDishes(queryString) {
+async function LoadDishes(queryString) {
   $("#dishes-list").empty();
   $('.selectpicker').selectpicker();
-  Get(`/dish${queryString}`).then(async (response) => {
+  Get(`/dish/${queryString}`).then(async (response) => {
     if (response.ok) {
       let json = await response.json()
       UpdatePagination(json.pagination)
-      let template =await $.get("/html/dishTemplate.html");
+      let template = await $.get("/html/dishTemplate.html");
       for (const dish of json.dishes) {
         let block = $(template);
         FillDishInfo(block, dish)
