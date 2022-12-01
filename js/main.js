@@ -7,6 +7,7 @@ export function initMain(queryString) {
 
 function LoadDishes(queryString) {
   $("#dishes-list").empty();
+  $('.selectpicker').selectpicker();
   Get(`/dish${queryString}`).then(async (response) => {
     if (response.ok) {
       let json = await response.json()
