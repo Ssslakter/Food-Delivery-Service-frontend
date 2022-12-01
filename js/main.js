@@ -7,14 +7,13 @@ export function initMain(queryString) {
 
 function LoadDishes(queryString) {
   $("#dishes-list").empty();
-  $("#dishes-list").load("/html/templates.html #card-template");
   Get(`/dish${queryString}`).then(async (response) => {
     if (response.ok) {
       let json = await response.json()
       UpdatePagination(json.pagination)
-      let template = $("#card-template");
+      let template =await $.get("/html/dishTemplate.html");
       for (const dish of json.dishes) {
-        let block = template.clone();
+        let block = $(template);
         FillDishInfo(block, dish)
         block.find(".dish-link").attr("href", `item/${dish.id}`)
         $("#dishes-list").append(block);
