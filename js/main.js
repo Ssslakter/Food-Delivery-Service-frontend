@@ -1,5 +1,5 @@
 import { FillDishInfo } from "./item.js";
-
+import { addToCart } from "./cart.js";
 export function initMain(queryString) {
   //Load page consts
   LoadDishes(queryString || '');
@@ -17,6 +17,7 @@ function LoadDishes(queryString) {
         let block = template.clone();
         FillDishInfo(block, dish)
         block.find(".dish-link").attr("href", `item/${dish.id}`)
+        block.find("button").click(e => { addToCart(e) })
         $("#dishes-list").append(block);
       }
     }
