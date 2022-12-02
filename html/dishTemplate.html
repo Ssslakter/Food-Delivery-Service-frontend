@@ -1,22 +1,80 @@
 <!-- Food card template -->
-<div class="card d-none rounded m-1" id="card-template">
+<div class="card d-none" id="card-template">
   <a href="/item" class="dish-link">
-    <img
-      src="/images/image_not_found.png"
-      onerror="if (this.src != '/images/image_not_found.png') this.src = '/images/image_not_found.png';"
-      class="card-img-top rounded dish-image"
-      alt=""
-  /></a>
+    <div>
+      <img
+        src="/images/image_not_found.png"
+        onerror="if (this.src != '/images/image_not_found.png') this.src = '/images/image_not_found.png';"
+        class="card-img dish-image"
+        alt=""
+      />
+      <img src="/images/leaf.svg" class="leaf-small leaf position-absolute" />
+    </div>
+  </a>
   <div class="card-body">
     <h5 class="card-title dish-title"></h5>
     <p class="card-subtitle text-muted dish-category"></p>
-    <div class="border border-2 rounded">Звезды</div>
-    <div class="overflow-auto" style="height: 200px">
-      <p class="card-text dish-description"></p>
-    </div>
+    <ul
+      class="border border-2 align-items-center rounded d-flex justify-content-evenly"
+      style="padding-inline-start: 0"
+    >
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+      <img
+        src="/images/star-0.svg"
+        class="col-auto"
+        style="max-width: 8%; height: auto"
+      />
+    </ul>
+    <p class="card-text dish-description"></p>
   </div>
-  <div class="card-footer d-flex justify-content-between">
-    <p class="card-text h6 dish-price"></p>
-    <button type="button" class="btn btn-primary btn-sm">В корзину</button>
+  <div class="row card-footer justify-content-between">
+    <p class="col-auto card-text h6 dish-price"></p>
+    <button type="button" class="btn btn-primary btn-sm col-auto">
+      В корзину
+    </button>
   </div>
 </div>

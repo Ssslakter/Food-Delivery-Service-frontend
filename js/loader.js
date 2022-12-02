@@ -19,10 +19,10 @@ export class PageLoader {
     }
 
     static async loadPage(url, query) {
+        $("main").empty();
         //TODO change history in other files
         history.replaceState(null, '', url + query);
         this.#changeAuthInHeader(window.localStorage.getItem('userEmail'))
-        $("main").empty();
         const address = url.substring(1).split('/');
         if (address[0] == '') {
             $("main").load(`/html/main.html`, () => {
@@ -53,17 +53,4 @@ export class PageLoader {
         }
     }
 
-}
-
-export function SetLinkListeners() {
-    var links = $("a");
-    for (const link of links) {
-        link.addEventListener("click", async (e) => {
-            e.preventDefault();
-            var url = await $(e.target).attr("href");
-            var full = new URL(location.origin + url);
-            PageLoader.loadPage(full.pathname, full.search);
-        });
-
-    }
 }
