@@ -10,6 +10,7 @@ export function initRegistration() {
 async function AddRegListener() {
     $("#submit").click(() => {
         $("#server-error").addClass("d-none")
+        $("#user-exists").addClass("d-none")
         let result = ValidateForm()
         if (result != false) {
             var data = $('form').serializeArray();
@@ -25,7 +26,7 @@ async function AddRegListener() {
                 }
                 else {
                     if (resp.status == 400) {
-                        console.log(resp)
+                        $("#user-exists").removeClass("d-none")
                     }
                     else {
                         $("#server-error").removeClass("d-none")
