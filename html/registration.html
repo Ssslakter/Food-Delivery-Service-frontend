@@ -1,65 +1,97 @@
 <main>
-  <div class="container shadow p-3" id="registration-form">
+  <div
+    class="container-md shadow rounded-bottom"
+    id="registration-form"
+    novalidate
+  >
     <h1>Регистрация нового пользователя</h1>
-    <div class="mb-3">
-      <label for="credentials" class="form-label">Ф.И.О.</label>
-      <input type="text" class="form-control" id="credentials" required />
-    </div>
-    <div class="mb-3">
-      <label for="sex-select" class="form-label">Пол</label>
-      <select class="form-select" name="sex-select" id="sex-select" required>
-        <option value="Male">мужчина</option>
-        <option value="Female">женщина</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label for="phone" class="form-label">Телефон</label>
-      <input
-        type="tel"
-        class="form-control"
-        name="phone"
-        id="phone"
-        placeholder="+ 7 (XXX) XXX-XX-XX"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="birthdate" class="form-label">Дата рождения</label>
-      <input
-        type="date"
-        class="form-control"
-        name="birthdate"
-        id="birthdate"
-        placeholder=""
-      />
-    </div>
-    <div class="mb-3">
-      <label for="address" class="form-label">Адрес</label>
-      <input
-        type="text"
-        class="form-control"
-        id="address"
-        placeholder="г. Томск, ул. Ленина, д. 999"
-      />
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        name="email"
-        id="email"
-        placeholder="name@example.com"
-        aria-describedby="emailHelpId"
-        required
-      />
-      <small id="emailHelpId" class="form-text text-muted"
-        >Email будет использоваться для входа в систему</small
-      >
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Пароль</label>
-      <input type="password" class="form-control" id="password" required />
-    </div>
-    <button type="button" class="btn btn-primary">Зарегистрироваться</button>
+    <form class="needs-validation">
+      <div class="mb-3 required">
+        <label for="credentials" class="form-label">Ф.И.О.</label>
+        <input
+          type="text"
+          class="form-control"
+          name="fullName"
+          id="credentials"
+          required
+        />
+        <div class="invalid-feedback">Пожалуйста введите ФИО</div>
+      </div>
+      <div class="mb-3">
+        <label for="sex-select" class="form-label">Пол</label>
+        <select class="form-select" name="gender" id="sex-select" required>
+          <option value="Male">мужчина</option>
+          <option value="Female">женщина</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Телефон</label>
+        <input
+          type="tel"
+          class="form-control"
+          name="phoneNumber"
+          id="phone"
+          placeholder="+ 7 (XXX) XXX-XX-XX"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="birthdate" class="form-label">Дата рождения</label>
+        <input
+          type="date"
+          class="form-control"
+          name="birthdate"
+          id="birthdate"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Адрес</label>
+        <input
+          type="text"
+          class="form-control"
+          name="address"
+          id="address"
+          placeholder="г. Томск, ул. Ленина, д. 999"
+        />
+      </div>
+      <div class="mb-3 required">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          id="email"
+          placeholder="name@example.com"
+          aria-describedby="emailHelpId"
+          required
+        />
+        <small id="emailHelpId" class="form-text text-muted"
+          >Email будет использоваться для входа в систему</small
+        >
+        <div class="invalid-feedback" for="email">Некорректный Email</div>
+      </div>
+      <div class="mb-3 required">
+        <label for="password" class="form-label">Пароль</label>
+        <input
+          type="password"
+          pattern="(?=.*\d)[\d\w!@#$%^&*]{6,}"
+          class="form-control"
+          name="password"
+          required
+        />
+        <small class="form-text text-muted"
+          >Пароль должен содержать хотя бы одну цифру</small
+        >
+        <div class="invalid-feedback">Некорректный формат пароля</div>
+      </div>
+      <p class="text d-none" id="server-error" style="color: red">
+        Ошибка сервера, попробуйте зарегистрироваться чуть позже
+      </p>
+      <p class="text d-none" id="user-exists" style="color: red">
+        Данный пользователь уже зарегистрирован
+      </p>
+      <button type="button" class="btn btn-primary mb-3" id="submit">
+        Зарегистрироваться
+      </button>
+    </form>
   </div>
 </main>

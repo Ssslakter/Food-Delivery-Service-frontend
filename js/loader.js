@@ -1,5 +1,5 @@
 import { initLogin } from './login.js'
-//import { initReg } from './registration.js'
+import { initRegistration } from './registration.js'
 //import { initOrders } from './orders.js'
 //import { initPurch } from './purchase.js'
 import { initMain } from "./main.js"
@@ -9,7 +9,7 @@ export class PageLoader {
 
     static endpoints = {
         login: initLogin,
-        registration: null,
+        registration: initRegistration,
         profile: null,
         item: initItem,
         cart: null,
@@ -18,13 +18,11 @@ export class PageLoader {
         purchase: null
     }
 
-    constructor() {
-
-    }
-
-    static loadPage(url, query) {
-        this.#changeAuthInHeader(window.localStorage.getItem('userEmail'))
+    static async loadPage(url, query) {
         $("main").empty();
+        //TODO change history in other files
+        history.replaceState(null, '', url + query);
+        this.#changeAuthInHeader(window.localStorage.getItem('userEmail'))
         const address = url.substring(1).split('/');
         if (address[0] == '') {
             $("main").load(`/html/main.html`, () => {
@@ -37,7 +35,6 @@ export class PageLoader {
         else {
             $("main").load('/html/notFound.html');
         }
-        history.pushState(null, null, url);
     }
 
     static #changeAuthInHeader(isLogged) {
