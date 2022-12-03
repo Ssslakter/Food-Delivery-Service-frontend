@@ -18,13 +18,11 @@ export class PageLoader {
         purchase: null
     }
 
-    constructor() {
-
-    }
-
-    static loadPage(url, query) {
-        this.#changeAuthInHeader(window.localStorage.getItem('userEmail'))
+    static async loadPage(url, query) {
         $("main").empty();
+        //TODO change history in other files
+        history.replaceState(null, '', url + query);
+        this.#changeAuthInHeader(window.localStorage.getItem('userEmail'))
         const address = url.substring(1).split('/');
         if (address[0] == '') {
             $("main").load(`/html/main.html`, () => {
@@ -37,7 +35,6 @@ export class PageLoader {
         else {
             $("main").load('/html/notFound.html');
         }
-        history.pushState(null, null, url);
     }
 
     static #changeAuthInHeader(isLogged) {
