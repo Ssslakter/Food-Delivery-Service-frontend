@@ -36,10 +36,10 @@ footer {
 
 /*leaf big*/
 .leaf-big {
-    width: 5%;
+    width: 9%;
     position: absolute;
-    top: 18%;
-    right: 26%;
+    top: 5%;
+    right: 15.5%;
 }
 
 /*dish in cart*/
@@ -51,4 +51,10 @@ footer {
 
 .dish-cart .btn-group {
     max-height: 40px;
+}
+
+/*required attributes*/
+.form .required .form-label:after {
+    content: "*";
+    color: red;
 }

@@ -1,8 +1,12 @@
 <main>
-  <div class="container shadow p-3" id="registration-form">
+  <div
+    class="container-md shadow rounded-bottom"
+    id="registration-form"
+    novalidate
+  >
     <h1>Регистрация нового пользователя</h1>
-    <form>
-      <div class="mb-3">
+    <form class="needs-validation">
+      <div class="mb-3 required">
         <label for="credentials" class="form-label">Ф.И.О.</label>
         <input
           type="text"
@@ -11,6 +15,7 @@
           id="credentials"
           required
         />
+        <div class="invalid-feedback">Пожалуйста введите ФИО</div>
       </div>
       <div class="mb-3">
         <label for="sex-select" class="form-label">Пол</label>
@@ -34,9 +39,8 @@
         <input
           type="date"
           class="form-control"
-          name="birthDate"
+          name="birthdate"
           id="birthdate"
-          placeholder=""
         />
       </div>
       <div class="mb-3">
@@ -45,10 +49,11 @@
           type="text"
           class="form-control"
           name="address"
+          id="address"
           placeholder="г. Томск, ул. Ленина, д. 999"
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 required">
         <label for="email" class="form-label">Email</label>
         <input
           type="email"
@@ -62,12 +67,26 @@
         <small id="emailHelpId" class="form-text text-muted"
           >Email будет использоваться для входа в систему</small
         >
+        <div class="invalid-feedback" for="email">Некорректный Email</div>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 required">
         <label for="password" class="form-label">Пароль</label>
-        <input type="password" class="form-control" name="password" required />
+        <input
+          type="password"
+          pattern="(?=.*\d)[\d\w!@#$%^&*]{6,}"
+          class="form-control"
+          name="password"
+          required
+        />
+        <small class="form-text text-muted"
+          >Пароль должен содержать хотя бы одну цифру</small
+        >
+        <div class="invalid-feedback">Некорректный формат пароля</div>
       </div>
-      <button type="button" class="btn btn-primary" id="submit">
+      <p class="text d-none" id="server-error" style="color: red">
+        Ошибка сервера, попробуйте зарегистрироваться чуть позже
+      </p>
+      <button type="button" class="btn btn-primary mb-3" id="submit">
         Зарегистрироваться
       </button>
     </form>

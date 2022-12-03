@@ -5,6 +5,9 @@ function ToJsObject(arr) {
     var values = {};
     $.each(arr, (i, field) => {
         values[field.name] = field.value;
+        if (field.value == "") {
+            values[field.name] = null
+        }
     })
     return values;
 }
