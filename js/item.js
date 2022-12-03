@@ -6,7 +6,6 @@ export function initItem() {
 }
 
 function LoadDishInfo() {
-    console.log(location.pathname)
     let url = location.pathname.replace('/item/', '')
     Get(`/dish/${url}`).then(async (response) => {
         if (response.ok) {

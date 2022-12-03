@@ -31,3 +31,7 @@ function FillCartInfo(block, data) {
     block.find(".total-price").text(data.totalPrice)
     block.find(".amount").text(data.amount)
 }
+
+export function AddToCart() {
+
+}

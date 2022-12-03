@@ -39,7 +39,7 @@ async function Request(url, data, type, isAuth) {
     if (isAuth) {
         hs["Authoriztion"] = GetToken()
     }
-    console.log(fullUrl);
+    //console.log(fullUrl);
     var response = await fetch(fullUrl, {
         credentials: 'same-origin',
         method: type,

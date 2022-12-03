@@ -1,7 +1,7 @@
 import { FillDishInfo } from "./item.js";
 import { PageLoader } from './loader.js';
 import { DrawStarRating } from "./stars.js";
-import { addToCart } from "./cart.js";
+import { AddToCart } from "./cart.js";
 export async function initMain(queryString) {
 
   //Load page consts
@@ -30,7 +30,7 @@ async function LoadDishes(queryString) {
           var full = new URL(`${location.origin}/item/${dish.id}`);
           PageLoader.loadPage(full.pathname, full.search);
         });
-        block.find("button").click(e => { addToCart(e) })
+        block.find("button").click(e => { AddToCart(e) })
         $("#dishes-list").append(block);
       }
     }
