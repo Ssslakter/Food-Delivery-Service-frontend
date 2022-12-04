@@ -1,33 +1,37 @@
-<div class="card dish-cart" data-id="">
-  <div class="card-body">
-    <div class="row justify-content-between">
+<li class="list-group-item">
+  <div class="card dish-cart p-2" data-id="">
+    <div class="card-body row justify-content-between align-items-center">
       <div class="col-md-auto row">
         <div class="col-auto">
-          <img src="/images/image_not_found.png" class="img" />
+          <img src="/images/image_not_found.png" class="img rounded-4" />
         </div>
         <div class="col">
           <h3 class="h3 dish-title">Tom yam</h3>
           <p class="card-text dish-price">cost: 270p.</p>
         </div>
         <div class="col-auto btn-group" role="group" aria-label="First group">
-          <button type="button" class="btn btn-outline-secondary button-minus">
+          <button type="button" class="btn btn-outline-secondary minus-button">
             -
           </button>
-          <button type="button" class="btn btn-outline-secondary amount">
+          <button
+            type="button"
+            class="btn btn-outline-secondary amount"
+            disabled
+          >
             2
           </button>
-          <button type="button" class="btn btn-outline-secondary button-plus">
+          <button type="button" class="btn btn-outline-secondary plus-button">
             +
           </button>
         </div>
       </div>
       <button
         type="button"
-        class="col-md-auto btn btn-danger"
+        class="col-md-auto btn btn-danger delete-button"
         style="height: 100%"
       >
         Удалить
       </button>
     </div>
   </div>
-</div>
+</li>

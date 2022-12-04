@@ -1,49 +1,6 @@
 <main class="container shadow">
-  <ul id="dishs-cart">
-    <li class="list-group-item">
-      <div class="card" data-id="">
-        <div class="card-body">
-          <div class="row justify-content-between">
-            <div class="col-md-auto row">
-              <div class="col-auto">
-                <img src="/images/image_not_found.png" class="img" />
-              </div>
-              <div class="col">
-                <h3 class="h3">Tom yam</h3>
-                <p class="card-text dish-description">cost: 270p.</p>
-              </div>
-              <div
-                class="col-auto btn-group"
-                role="group"
-                aria-label="First group"
-              >
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary button-minus"
-                >
-                  -
-                </button>
-                <button type="button" class="btn btn-outline-secondary">
-                  2
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary button-plus"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-            <button
-              type="button"
-              class="col-md-auto btn btn-danger"
-              style="height: 100%"
-            >
-              Удалить
-            </button>
-          </div>
-        </div>
-      </div>
-    </li>
-  </ul>
+  <ol id="dishes-cart"></ol>
+  <h1 class="text-start text-center pt-4 d-none" id="no-items">
+    Похоже, что вы еще ничего не добавили
+  </h1>
 </main>

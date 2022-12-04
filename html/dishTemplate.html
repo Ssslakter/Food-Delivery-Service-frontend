@@ -1,5 +1,4 @@
-<!-- Food card template -->
-<div class="card d-none" id="card-template">
+<div class="card d-none">
   <a href="/item" class="dish-link">
     <div>
       <img
@@ -73,8 +72,26 @@
   </div>
   <div class="row card-footer justify-content-between">
     <p class="col-auto card-text h6 dish-price"></p>
-    <button type="button" class="btn btn-primary btn-sm col-auto">
+    <button
+      type="button"
+      class="btn btn-primary btn-sm col-auto to-cart-button"
+    >
       В корзину
     </button>
+    <div
+      class="col-auto btn-group d-none"
+      role="group"
+      aria-label="First group"
+    >
+      <button type="button" class="btn btn-outline-secondary minus-button">
+        -
+      </button>
+      <button type="button" class="btn btn-outline-secondary amount" disabled>
+        2
+      </button>
+      <button type="button" class="btn btn-outline-secondary plus-button">
+        +
+      </button>
+    </div>
   </div>
 </div>

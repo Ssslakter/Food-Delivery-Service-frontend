@@ -53,6 +53,10 @@ footer {
     max-height: 40px;
 }
 
+.btn-group .amount {
+    opacity: 1;
+}
+
 /*required attributes*/
 .form .required .form-label:after {
     content: "*";

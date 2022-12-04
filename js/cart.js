@@ -1,26 +1,31 @@
+import { PageLoader } from "./loader.js";
+
 export function initCart() {
-    $('.delete-button').click(function (e) {
-        e.preventDefault();
-        //get parent
-        e.data('id')
-    });
+    LoadCartDishes()
+
 }
 
 function LoadCartDishes() {
     $("#dishes-cart").empty();
-    Get('/api/basket').then(async (response) => {
+    GetAuth('/basket').then(async (response) => {
         if (response.ok) {
             let json = await response.json()
             let template = await $.get('/html/cartTemplate.html');
             for (const dish of json) {
                 let block = $(template);
                 FillCartInfo(block, dish)
-                block.find(".dish-link").attr("href", `item/${dish.id}`)
-                $("#dishes-list").append(block);
+                $("#dishes-cart").append(block);
             }
         }
+        else if (response.status == 401) {
+            localStorage.clear();
+            PageLoader.loadPage("/login");
+        }
+    }).then(() => {
+        if ($(".list-group-item").length == 0) {
+            $("#no-items").removeClass("d-none")
+        }
     });
-    $("#dishes-cart").append(template);
 }
 
 function FillCartInfo(block, data) {
@@ -30,8 +35,56 @@ function FillCartInfo(block, data) {
     block.find(".dish-price").text(`Цена - ${data.price} р.`);
     block.find(".total-price").text(data.totalPrice)
     block.find(".amount").text(data.amount)
+    if (data.amount == 1) {
+        block.find(".minus-button").prop('disabled', true);
+    }
+    block.find(".delete-button").click(() => {
+        DeleteAuth(`/basket/dish/${data.id}?increase=false`).then((response) => {
+            if (response.ok) {
+                block.remove()
+                if ($(".list-group-item").length == 0) {
+                    $("#no-items").removeClass("d-none")
+                }
+            }
+            else if (response.status == 401) {
+                localStorage.clear();
+                PageLoader.loadPage("/login");
+            }
+        })
+    })
+    block.find(".plus-button").click(() => {
+        AddToCart(block, data.id)
+    })
+    block.find(".minus-button").click(() => RemoveFromCart(block, data.id))
 }
 
-export function AddToCart() {
+function RemoveFromCart(block, id) {
+    DeleteAuth(`/basket/dish/${id}?increase=true`).then((response) => {
+        if (response.ok) {
+            let amount = block.find(".amount")
+            amount.text(amount.text() - 1)
+            if (amount.text() == 1) {
+                block.find(".minus-button").prop('disabled', true);
+            }
+        }
+        else if (response.status == 401) {
+            localStorage.clear();
+            PageLoader.loadPage("/login");
+        }
+    })
+}
 
+export function AddToCart(block, id) {
+    return PostAuth(`/basket/dish/${id}`).then((async (response) => {
+        if (response.ok) {
+            let amount = block.find(".amount")
+            amount.text(parseInt(amount.text()) + 1)
+            return true
+        }
+        else if (response.status == 401) {
+            localStorage.clear();
+            PageLoader.loadPage("/login");
+        }
+        return false
+    }))
 }

@@ -16,12 +16,24 @@ async function Post(url, data) {
     return Request(url, data, "POST", false);
 }
 
-async function Put(url, data) {
-    return Request(url, data, "PUT", false);
-}
-
 async function Get(url, data) {
     return Request(url, data, "GET", false);
+}
+
+async function GetAuth(url, data) {
+    return Request(url, data, "GET", true);
+}
+
+async function PutAuth(url, data) {
+    return Request(url, data, "PUT", true);
+}
+
+async function PostAuth(url, data) {
+    return Request(url, data, "POST", true);
+}
+
+async function DeleteAuth(url, data) {
+    return Request(url, data, "DELETE", true);
 }
 
 function AddClickListeners(onClickFunc) {
@@ -37,9 +49,8 @@ async function Request(url, data, type, isAuth) {
         'Content-Type': 'application/json'
     })
     if (isAuth) {
-        hs["Authoriztion"] = GetToken()
+        hs.append("Authorization", `Bearer ${GetToken()}`)
     }
-    //console.log(fullUrl);
     var response = await fetch(fullUrl, {
         credentials: 'same-origin',
         method: type,
@@ -56,3 +67,4 @@ function GetToken() {
 function SetToken(token) {
     return localStorage.setItem('userToken', token)
 }
+
