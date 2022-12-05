@@ -37,8 +37,8 @@ async function AddRegListener() {
     });
 }
 
-function ValidateForm() {
-    var form = $("#registration-form form")
+export function ValidateForm() {
+    var form = $("form")
     form.addClass('was-validated')
     form.validate({
         errorPlacement: function (error, element) {
@@ -69,7 +69,7 @@ function ValidateForm() {
 //     }
 // }
 
-function IsDateWas(givenDate) {
+export function IsDateWas(givenDate) {
     if (new Date(givenDate) >= new Date()) {
         return false;
     }

@@ -5,13 +5,14 @@ import { initRegistration } from './registration.js'
 import { initMain } from "./main.js"
 import { initItem } from "./item.js"
 import { initCart } from './cart.js'
+import { initProfile } from './profile.js'
 
 export class PageLoader {
 
     static endpoints = {
         login: initLogin,
         registration: initRegistration,
-        profile: null,
+        profile: initProfile,
         item: initItem,
         cart: initCart,
         orders: null,

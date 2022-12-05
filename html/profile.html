@@ -1,0 +1,97 @@
+<main>
+  <div class="container shadow p-3" id="profile-form">
+    <h1 class="h1 pb-3">Профиль</h1>
+    <form>
+      <div class="g-3 align-items-center row pb-4">
+        <div class="col-2">
+          <label for="credentials" class="form-label">Ф.И.О.</label>
+        </div>
+        <div class="col pe-5 ps-2">
+          <input
+            type="text"
+            class="form-control"
+            name="fullName"
+            id="credentials"
+            required
+          />
+          <div class="invalid-feedback">Пожалуйста введите Ф.И.О.</div>
+        </div>
+      </div>
+      <div class="g-3 align-items-center row pb-4">
+        <div class="col-2">
+          <label for="email" class="col-form-label">Email</label>
+        </div>
+        <div class="col pe-5 ps-2">
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            placeholder="name@example.com"
+            aria-describedby="emailHelpId"
+            required
+            disabled
+          />
+        </div>
+      </div>
+      <div class="g-3 align-items-center row pb-4">
+        <div class="col-2">
+          <label for="birthdate" class="form-label">Дата рождения</label>
+        </div>
+        <div class="col pe-5 ps-2">
+          <input
+            type="date"
+            class="form-control"
+            name="birthdate"
+            id="birthdate"
+          />
+        </div>
+      </div>
+      <div class="g-3 align-items-center row pb-4">
+        <div class="col-2">
+          <label for="sex-select" class="form-label">Пол</label>
+        </div>
+        <div class="col pe-5 ps-2">
+          <select class="form-select" name="gender" id="gender" required>
+            <option value="Male">мужчина</option>
+            <option value="Female">женщина</option>
+          </select>
+        </div>
+      </div>
+      <div class="g-3 align-items-center row pb-4">
+        <div class="col-2">
+          <label for="address" class="form-label">Адрес</label>
+        </div>
+        <div class="col pe-5 ps-2">
+          <input
+            type="text"
+            class="form-control"
+            name="address"
+            id="address"
+            placeholder="г. Томск, ул. Ленина, д. 999"
+          />
+        </div>
+      </div>
+      <div class="g-3 align-items-center row pb-4">
+        <div class="col-2">
+          <label for="phone" class="form-label">Телефон</label>
+        </div>
+        <div class="col pe-5 ps-2">
+          <input
+            type="tel"
+            class="form-control"
+            name="phoneNumber"
+            id="phone"
+            placeholder="+ 7 (XXX) XXX-XX-XX"
+          />
+        </div>
+      </div>
+      <p class="text d-none" id="server-error" style="color: #dc3545">
+        Ошибка сервера, попробуйте зарегистрироваться чуть позже
+      </p>
+      <button type="button" class="btn btn-primary" id="update">
+        Изменить
+      </button>
+    </form>
+  </div>
+</main>
