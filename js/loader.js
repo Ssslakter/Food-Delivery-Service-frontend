@@ -21,6 +21,7 @@ export class PageLoader {
     }
 
     static async loadPage(url, query) {
+        query = query || ""
         $("main").empty();
         //TODO change history in other files
         history.replaceState(null, '', url + query);

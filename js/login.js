@@ -18,7 +18,6 @@ async function AddLoginListener() {
           window.localStorage.setItem('userToken', response.token)
           window.localStorage.setItem('userEmail', userEmail);
           PageLoader.loadPage('/');
-          console.log(response.token)
         }
         else if (resp.status == 400) {
           $("#wrong-login").removeClass("d-none")

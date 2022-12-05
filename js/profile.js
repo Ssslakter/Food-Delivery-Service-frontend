@@ -30,10 +30,12 @@ async function AddEditListener() {
         if (result != false) {
             var data = $('form').serializeArray();
             data = ToJsObject(data);
-            var userEmail = data.email
             PutAuth(`/account/profile`, data).then(async (resp) => {
                 if (resp.status == 500) {
                     $("#server-error").removeClass("d-none")
+                }
+                else if (resp.status == 401) {
+                    PageLoader.loadPage("/login")
                 }
             })
         }
