@@ -1,9 +1,9 @@
 import { PageLoader } from './loader.js';
 
+export var phoneMask
+
 export function initRegistration() {
-    $.validator.addMethod("validateDate", function (value) {
-        return value == "" || IsDateWas(value);
-    }, "Некорректная дата рождения");
+    InitValidator()
     AddRegListener();
 }
 
@@ -42,32 +42,28 @@ export function ValidateForm() {
     form.addClass('was-validated')
     form.validate({
         errorPlacement: function (error, element) {
-            console.log(element, error)
-            if (element.attr("name") == "birthdate") {
+            //console.log(element, error)
+            if (element.attr("name") == "birthDate") {
                 //element.get(0).setCustomValidity("Invalid field.");
                 error.addClass('invalid-feedback');
                 error.insertAfter(element);
-            } else {
+            } else if (element.attr("name") == "phoneNumber") {
+                error.addClass('invalid-feedback');
+                error.insertAfter(element);
             }
         },
         rules: {
-            birthdate: {
+            birthDate: {
                 validateDate: true
+            },
+            phoneNumber: {
+                phoneLength: 17
             }
         }
     })
     return form.valid();
 }
 
-// function ValidateDate() {
-//     var userDate = $('#birthDate').val();
-//     if (IsDateWas(givenDate)) {
-//         return true;
-//     }
-//     else {
-
-//     }
-// }
 
 export function IsDateWas(givenDate) {
     if (new Date(givenDate) >= new Date()) {
@@ -77,3 +73,15 @@ export function IsDateWas(givenDate) {
 }
 
 
+export function InitValidator() {
+    $.validator.addMethod("validateDate", function (value) {
+        return value == "" || IsDateWas(value);
+    }, "Некорректная дата рождения");
+    $.validator.addMethod("phoneLength", function (value, element, param) {
+        return value.length == 0 || value.length == param;
+    }, $.validator.format("Некорректный формат телефона"));
+    phoneMask = IMask(
+        document.getElementById('phone'), {
+        mask: '+{7}(000) 000-00-00'
+    });
+}

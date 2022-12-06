@@ -1,11 +1,10 @@
 import { PageLoader } from './loader.js';
-import { ValidateForm, IsDateWas } from './registration.js';
+import { ValidateForm, InitValidator, phoneMask } from './registration.js';
+
 
 export function initProfile() {
+    InitValidator()
     LoadProfile()
-    $.validator.addMethod("validateDate", function (value) {
-        return value == "" || IsDateWas(value);
-    }, "Некорректная дата рождения");
     AddEditListener();
 }
 
@@ -25,13 +24,17 @@ function LoadProfile() {
 
 async function AddEditListener() {
     $("#update").click(() => {
+        $("#success-alert").addClass("d-none")
         $("#server-error").addClass("d-none")
         let result = ValidateForm()
         if (result != false) {
             var data = $('form').serializeArray();
             data = ToJsObject(data);
             PutAuth(`/account/profile`, data).then(async (resp) => {
-                if (resp.status == 500) {
+                if (resp.ok) {
+                    $("#success-alert").removeClass("d-none")
+                }
+                else if (resp.status == 500) {
                     $("#server-error").removeClass("d-none")
                 }
                 else if (resp.status == 401) {
@@ -48,7 +51,8 @@ function FillForm(data) {
     $("#email").val(data.email)
     $("#gender").val(data.gender)
     $("#address").val(data.address)
-    $("#phone").val(data.phoneNumber)
+    phoneMask.value = data.phoneNumber
+    phoneMask.updateValue()
     var date = new Date(data.birthDate)
     var day = ("0" + date.getDate()).slice(-2);
     var month = ("0" + (date.getMonth() + 1)).slice(-2);

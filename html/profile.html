@@ -42,7 +42,7 @@
           <input
             type="date"
             class="form-control"
-            name="birthdate"
+            name="birthDate"
             id="birthdate"
           />
         </div>
@@ -78,17 +78,40 @@
         </div>
         <div class="col pe-5 ps-2">
           <input
-            type="tel"
+            type="text"
             class="form-control"
             name="phoneNumber"
             id="phone"
-            placeholder="+ 7 (XXX) XXX-XX-XX"
+            placeholder="+7(XXX)XXX-XX-XX"
           />
         </div>
       </div>
-      <p class="text d-none" id="server-error" style="color: #dc3545">
-        Ошибка сервера, попробуйте зарегистрироваться чуть позже
-      </p>
+      <div
+        class="d-none alert alert-danger alert-dismissible"
+        role="alert"
+        id="server-error"
+      >
+        Не удалось изменить данные
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div
+        class="d-none alert alert-success alert-dismissible"
+        role="alert"
+        id="success-alert"
+      >
+        Данные были успешно изменены
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
       <button type="button" class="btn btn-primary" id="update">
         Изменить
       </button>
