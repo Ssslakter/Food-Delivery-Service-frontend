@@ -2,7 +2,9 @@ import { PageLoader } from "./loader.js";
 
 export function initCart() {
     LoadCartDishes()
-
+    $("#go-to-order").click(() => {
+        PageLoader.loadPage("/purchase")
+    })
 }
 
 function LoadCartDishes() {
@@ -24,6 +26,7 @@ function LoadCartDishes() {
     }).then(() => {
         if ($(".list-group-item").length == 0) {
             $("#no-items").removeClass("d-none")
+            $("#go-to-order").prop("disabled", true);
         }
     });
 }
