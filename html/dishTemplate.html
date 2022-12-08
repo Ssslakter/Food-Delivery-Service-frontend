@@ -1,4 +1,4 @@
-<div class="card d-none">
+<div class="card d-none p-0">
   <a href="/item" class="dish-link">
     <div>
       <img
@@ -70,15 +70,16 @@
     </ul>
     <p class="card-text dish-description"></p>
   </div>
-  <div class="row card-footer justify-content-between">
-    <p class="col-auto card-text h6 dish-price"></p>
-    <button
-      type="button"
-      class="btn btn-primary btn-sm col-auto to-cart-button"
-    >
-      В корзину
-    </button>
-    <div
+  <div class="card-footer">
+    <div class="row justify-content-between">
+      <p class="col-auto card-text h6 dish-price"></p>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm col-auto to-cart-button"
+      >
+        В корзину
+      </button>
+      <div
       class="col-auto btn-group d-none"
       role="group"
       aria-label="First group"
@@ -93,5 +94,7 @@
         +
       </button>
     </div>
+    </div>    
+    
   </div>
 </div>

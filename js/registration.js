@@ -3,6 +3,7 @@ import { PageLoader } from './loader.js';
 export var phoneMask
 
 export function initRegistration() {
+    $("#birthdate").attr("max", "2018-01-01")
     InitValidator()
     AddRegListener();
 }
