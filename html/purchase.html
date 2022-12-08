@@ -1,0 +1,73 @@
+<main>
+  <div class="container-md shadow rounded-bottom">
+    <h1 class="h1">Оформление заказа</h1>
+    <h3 class="h4">Данные покупателя</h3>
+    <div class="d-flex gap-2 justify-content-evenly">
+      <div class="col form-floating">
+        <input
+          type="tel"
+          class="form-control"
+          name="phoneNumber"
+          value="12321"
+          id="phone"
+          disabled
+        />
+        <label for="phone">Телефон</label>
+      </div>
+      <div class="col form-floating">
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          value="test@example.com"
+          id="email"
+          disabled
+        />
+        <label for="email">Email</label>
+      </div>
+    </div>
+    <h3 class="h4 mt-3">Данные доставки</h3>
+    <form class="d-flex gap-2 justify-content-evenly">
+      <div class="col">
+        <label for="address" class="form-label">Адрес</label>
+        <input
+          type="text"
+          class="form-control"
+          name="address"
+          id="address"
+          placeholder="г. Томск, ул. Ленина, д. 999"
+          required
+        />
+        <div class="invalid-feedback">Адрес является обязательным</div>
+      </div>
+
+      <div class="col">
+        <label for="delivery-time" class="form-label">Время доставки</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          name="deliveryTime"
+          id="delivery-time"
+        />
+      </div>
+    </form>
+    <div class="mt-3">Список блюд:</div>
+    <ul class="list-group pt-2" id="dishes-cart"></ul>
+    <h1 class="text-start text-center pt-4 d-none" id="no-items">
+      Последний заказ был оформлен,ожидайте доставки
+    </h1>
+    <h3 class="pt-4 d-flex">
+      Стоимость заказа:&nbsp;
+      <div class="fw-normal" id="total-cart-price">0 ₽</div>
+    </h3>
+    <p class="text d-none" id="incorrect-order-time" style="color: #dc3545">
+      Некорректное время заказа
+    </p>
+    <p class="text d-none" id="server-error" style="color: #dc3545">
+      Ошибка сервера, попробуйте сделать заказ чуть позже
+    </p>
+    <button type="button" class="btn btn-success mb-3 mt-1" id="order-confirm">
+      Подтвердить заказ
+    </button>
+  </div>
+</main>

@@ -28,12 +28,12 @@ function LoadCartDishes() {
     });
 }
 
-function FillCartInfo(block, data) {
+export function FillCartInfo(block, data) {
     block.attr("data-id", data.id);
     block.find(".dish-title").text(data.name);
     block.find("img").attr("src", data.image);
-    block.find(".dish-price").text(`Цена - ${data.price} р.`);
-    block.find(".total-price").text(data.totalPrice)
+    block.find(".dish-price").text(`Цена: ${data.price} ₽`);
+    block.find(".total-price").text(`${data.totalPrice} ₽`)
     block.find(".amount").text(data.amount)
     if (data.amount == 1) {
         block.find(".minus-button").prop('disabled', true);

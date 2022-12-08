@@ -1,7 +1,7 @@
 import { initLogin } from './login.js'
 import { initRegistration } from './registration.js'
 //import { initOrders } from './orders.js'
-//import { initPurch } from './purchase.js'
+import { initMakeOrder } from './purchase.js'
 import { initMain } from "./main.js"
 import { initItem } from "./item.js"
 import { initCart } from './cart.js'
@@ -17,7 +17,7 @@ export class PageLoader {
         cart: initCart,
         orders: null,
         order: null,
-        purchase: null
+        purchase: initMakeOrder
     }
 
     static async loadPage(url, query) {

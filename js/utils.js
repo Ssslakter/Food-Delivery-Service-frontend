@@ -36,12 +36,6 @@ async function DeleteAuth(url, data) {
     return Request(url, data, "DELETE", true);
 }
 
-function AddClickListeners(onClickFunc) {
-    var all = $("a");
-    for (const link of all) {
-        link.addEventListener("click", onClickFunc);
-    }
-}
 
 async function Request(url, data, type, isAuth) {
     let fullUrl = ApiURL + url;
@@ -68,3 +62,10 @@ function SetToken(token) {
     return localStorage.setItem('userToken', token)
 }
 
+
+function ConvertDateTimeToString(date) {
+    var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    var localISOTime = (new Date(date - tzoffset)).toISOString().slice(0, -1);
+    var timeArr = localISOTime.split(':')//drop seconds
+    return `${timeArr[0]}:${timeArr[1]}`
+}
