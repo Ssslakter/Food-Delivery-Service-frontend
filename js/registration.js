@@ -19,7 +19,7 @@ async function AddRegListener() {
             Post(`/account/register`, data).then(async (resp) => {
                 if (resp.ok) {
                     let response = await resp.json()
-                    window.localStorage.setItem('userToken', response.token)
+                    SetToken('userToken', response.token)
                     window.localStorage.setItem('userEmail', userEmail);
                     PageLoader.loadPage('/');
                     console.log(response.token)
@@ -44,7 +44,6 @@ export function ValidateForm() {
         errorPlacement: function (error, element) {
             //console.log(element, error)
             if (element.attr("name") == "birthDate") {
-                //element.get(0).setCustomValidity("Invalid field.");
                 error.addClass('invalid-feedback');
                 error.insertAfter(element);
             } else if (element.attr("name") == "phoneNumber") {
@@ -74,11 +73,21 @@ export function IsDateWas(givenDate) {
 
 
 export function InitValidator() {
-    $.validator.addMethod("validateDate", function (value) {
-        return value == "" || IsDateWas(value);
+    $.validator.addMethod("validateDate", function (value, element) {
+        if (value == "" || IsDateWas(value)) {
+            element.setCustomValidity("");
+            return true;
+        }
+        element.setCustomValidity("Invalid field.");
+        return false;
     }, "Некорректная дата рождения");
     $.validator.addMethod("phoneLength", function (value, element, param) {
-        return value.length == 0 || value.length == param;
+        if (value.length == 0 || value.length == param) {
+            element.setCustomValidity("");
+            return true;
+        }
+        element.setCustomValidity("Invalid field.");
+        return false;
     }, $.validator.format("Некорректный формат телефона"));
     phoneMask = IMask(
         document.getElementById('phone'), {

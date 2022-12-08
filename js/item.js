@@ -32,6 +32,6 @@ export function FillDishInfo(block, data) {
     else {
         block.find(".leaf").addClass('d-none')
     }
-    block.find(".dish-price").text(`Цена - ${data.price} р.`);
+    block.find(".dish-price").text(`Цена - ${data.price} ₽`);
     block.removeClass("d-none");
 }
