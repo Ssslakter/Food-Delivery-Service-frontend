@@ -32,11 +32,19 @@
           <div class="navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item"><a class="nav-link" href="/">Меню</a></li>
-              <li class="nav-item">
+              <li class="nav-item" id="orders">
                 <a class="nav-link" href="/orders/">Заказы</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/cart/">Корзина</a>
+              <li class="nav-item" id="cart">
+                <span class="position-relative">
+                  <a class="nav-link" href="/cart/">Корзина </a>
+                  <span
+                    class="position-absolute top-0 translate-middle badge rounded-pill bg-success"
+                    id="cart-number"
+                    style="left: 50%"
+                  >
+                  </span>
+                </span>
               </li>
             </ul>
             <div class="d-flex">

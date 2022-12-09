@@ -25,7 +25,9 @@ export class PageLoader {
         $("main").empty();
         //TODO change history in other files
         history.replaceState(null, '', url + query);
-        this.#changeAuthInHeader(window.localStorage.getItem('userEmail'))
+        let email = window.localStorage.getItem('userEmail')
+        this.#getCartNumber(email)
+        this.#changeAuthInHeader(email)
         const address = url.substring(1).split('/');
         if (address[0] == '') {
             $("main").load(`/html/main.html`, () => {
@@ -47,13 +49,35 @@ export class PageLoader {
             $("#register").addClass("d-none");
             $("#user-login").removeClass("d-none");
             $("#user-login").text(window.localStorage.getItem('userEmail'))
+            $("#cart").removeClass("d-none");
+            $("#orders").removeClass("d-none");
         }
         else {
             $("#enter").removeClass("d-none");
             $("#user-login").addClass("d-none");
             $("#exit").addClass("d-none");
             $("#register").removeClass("d-none");
+            $("#cart").addClass("d-none");
+            $("#orders").addClass("d-none");
         }
+    }
+
+    static #getCartNumber(isLogged) {
+        if (isLogged) {
+            GetAuth('/basket').then(async (response) => {
+                if (response.ok) {
+                    let json = await response.json()
+                    $("#cart-number").text(json.length)
+                    if (json.length == 0) {
+                        $("#cart-number").addClass("d-none");
+                    }
+                }
+                else if (response.status == 401) {
+                    localStorage.clear()
+                }
+            })
+        }
+
     }
 
 }

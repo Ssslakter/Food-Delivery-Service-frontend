@@ -5,12 +5,13 @@
       class="col selectpicker"
       name="dish-select"
       id="dish-select"
+      placeholder="Ничего не выбрано"
     >
       <option value="Wok">WOK</option>
       <option value="Pizza">Пицца</option>
       <option value="Soup">Супы</option>
       <option value="Dessert">Десерты</option>
-      <option value="Drink">Напитка</option>
+      <option value="Drink">Напитки</option>
     </select>
     <select class="col selectpicker" name="sorting-select" id="sorting-select">
       <option value="NameAsc">А-Я</option>
@@ -59,4 +60,31 @@
       </li>
     </ul>
   </nav>
+</div>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div
+    id="liveToast"
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header">
+      <strong class="me-auto">
+        Оценка -&nbsp;<span class="review-num">7</span
+        ><img
+          src="/images/filled-star-review.svg"
+          class="img-fluid ps-2"
+          style="width: 25%"
+      /></strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <h5 class="toast-body fw-light">Отзыв успешно оставлен</h5>
+  </div>
 </div>

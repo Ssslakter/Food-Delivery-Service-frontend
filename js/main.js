@@ -85,6 +85,11 @@ async function AddFirstDish(block, id) {
     block.find(".btn-group").removeClass("d-none")
     block.find(".to-cart-button").addClass("d-none")
     block.find(".amount").text(1);
+    let curr_num = parseInt($("#cart-number").text())
+    $("#cart-number").text(1 + curr_num)
+    if (curr_num == 0) {
+      $("#cart-number").removeClass("d-none");
+    }
   }
 }
 
@@ -96,7 +101,12 @@ function RemoveFromCart(block, id) {
       if (amount.text() == 0) {
         block.find(".btn-group").addClass("d-none")
         block.find(".to-cart-button").removeClass("d-none")
-        block.find(".amount").text(dish.amount);
+        block.find(".amount").text(0);
+        let curr_num = parseInt($("#cart-number").text())
+        $("#cart-number").text(curr_num - 1)
+        if (curr_num == 1) {
+          $("#cart-number").addClass("d-none");
+        }
       }
     }
     else if (response.status == 401) {
