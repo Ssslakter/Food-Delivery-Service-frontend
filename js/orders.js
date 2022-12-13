@@ -8,6 +8,7 @@ export function initOrders() {
 }
 
 function LoadOrders() {
+    IfCartNotEmpty()
     $("#orders-list").empty();
     GetAuth('/order').then(async (response) => {
         if (response.ok) {
@@ -29,6 +30,23 @@ function LoadOrders() {
             $("#no-items").removeClass("d-none")
         }
     });
+}
+
+function IfCartNotEmpty() {
+    GetAuth('/basket').then(async (response) => {
+        if (response.ok) {
+            let json = await response.json()
+            console.log(json)
+            if (json.length == 0) {
+                $('#cart-block').addClass('d-none')
+                console.log("empty busket")
+            }
+            else {
+                $('#cart-block').removeClass('d-none')
+            }
+        }
+    }
+    )
 }
 
 
