@@ -110,7 +110,7 @@ export function ValidateForm() {
 
 function AddDelivaryTimeValidation() {
     $.validator.addMethod("validateDelivery", function (value, element) {
-        let timeForDelivery = new Date(value).getTime() - Math.round(Date.now() / 60000) * 60000
+        let timeForDelivery = new Date(value).getTime() - Math.floor(Date.now() / 60000) * 60000
         if (value == "" || timeForDelivery >= default_delivery_minutes * 60000) {
             element.setCustomValidity("");
             return true;

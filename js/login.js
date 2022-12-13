@@ -28,8 +28,15 @@ async function AddLoginListener() {
 }
 
 export function Logout() {
-  localStorage.clear();
-  PageLoader.loadPage('/');
+  PostAuth('/account/logout').then((response) => {
+    if (response.ok) {
+      localStorage.clear();
+      PageLoader.loadPage('/');
+    }
+    else if (response.status == 401) {
+      PageLoader.load('/login')
+    }
+  })
 }
 
 
