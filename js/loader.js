@@ -1,6 +1,7 @@
 import { initLogin } from './login.js'
 import { initRegistration } from './registration.js'
 import { initOrders } from './orders.js'
+import { initDetails } from './orderDetails.js'
 import { initMakeOrder } from './purchase.js'
 import { initMain } from "./main.js"
 import { initItem } from "./item.js"
@@ -16,7 +17,7 @@ export class PageLoader {
         item: initItem,
         cart: initCart,
         orders: initOrders,
-        order: null,
+        order: initDetails,
         purchase: initMakeOrder
     }
 

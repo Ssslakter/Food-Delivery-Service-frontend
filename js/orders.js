@@ -18,6 +18,12 @@ function LoadOrders() {
                 let block = $(template);
                 FillOrderInfo(block, dish)
                 AddConfirmListener(block, dish.id)
+                block.find(".order-time").attr("href", `/order/${dish.id}`)
+                block.find(".order-time").click(async (e) => {
+                    e.preventDefault();
+                    var full = new URL(`${location.origin}/order/${dish.id}`);
+                    PageLoader.loadPage(full.pathname, full.search);
+                });
                 $("#orders-list").append(block);
             }
         }
@@ -36,7 +42,6 @@ function IfCartNotEmpty() {
     GetAuth('/basket').then(async (response) => {
         if (response.ok) {
             let json = await response.json()
-            console.log(json)
             if (json.length == 0) {
                 $('#cart-block').addClass('d-none')
                 console.log("empty busket")
@@ -78,6 +83,8 @@ function AddConfirmListener(block, id) {
         PostAuth(`/order/${id}/status`).then(async (response) => {
             if (response.ok) {
                 LoadOrders();
+                var toast = new bootstrap.Toast($("#liveToast")[0])
+                toast.show()
             }
             else if (response.status == 401) {
                 localStorage.clear();

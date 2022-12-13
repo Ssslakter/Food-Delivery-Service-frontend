@@ -1,21 +1,40 @@
-<main>
-  <div class="container-md shadow rounded-bottom pt-4 ps-2 pe-2">
-    <div
-      class="row align-items-center border rounded justify-content-between p-3 d-none"
-      style="margin-left: 0; margin-right: 0"
-      id="cart-block"
-    >
-      <span class="col align-middle" style="line-height: revert">
-        В корзине есть блюда, можно оформить заказ
-      </span>
-      <button type="button" class="col-auto btn btn-success new-order">
-        Оформить
-      </button>
-    </div>
-    <h1 class="h1 ps-1">Последние заказы</h1>
-    <ul class="list-group pt-2" id="orders-list"></ul>
-    <h1 class="text-start text-center pt-4 d-none" id="no-items">
-      Похоже вы еще не сделали ни одного заказа
-    </h1>
+<div class="container-md shadow rounded-bottom pt-4 ps-2 pe-2">
+  <div
+    class="row align-items-center border rounded justify-content-between p-3 d-none"
+    style="margin-left: 0; margin-right: 0"
+    id="cart-block"
+  >
+    <span class="col align-middle" style="line-height: revert">
+      В корзине есть блюда, можно оформить заказ
+    </span>
+    <button type="button" class="col-auto btn btn-success new-order">
+      Оформить
+    </button>
   </div>
-</main>
+  <h1 class="h1 ps-1">Последние заказы</h1>
+  <ul class="list-group pt-2" id="orders-list"></ul>
+  <h1 class="text-start text-center pt-4 d-none" id="no-items">
+    Похоже вы еще не сделали ни одного заказа
+  </h1>
+</div>
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div
+    id="liveToast"
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header">
+      <strong class="me-auto">Подтверждение доставки</strong>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <h5 class="toast-body fw-light">Статус заказа - доставлен</h5>
+  </div>
+</div>
