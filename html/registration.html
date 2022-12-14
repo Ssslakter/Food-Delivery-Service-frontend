@@ -73,13 +73,14 @@
         <label for="password" class="form-label">Пароль</label>
         <input
           type="password"
-          pattern="(?=.*\d)[\d\w!@#$%^&*]{6,}"
           class="form-control"
           name="password"
           required
+          pattern="(?=.*\d)[\d\w!@#$%^&*]{6,}"
         />
         <small class="form-text text-muted"
-          >Пароль должен содержать хотя бы одну цифру</small
+          >Пароль должен содержать хотя бы одну цифру и иметь длину не меньше 6
+          символов</small
         >
         <div class="invalid-feedback">Некорректный формат пароля</div>
       </div>
@@ -87,7 +88,7 @@
         Ошибка сервера, попробуйте зарегистрироваться чуть позже
       </p>
       <p class="text d-none" id="user-exists" style="color: #dc3545">
-        Данный пользователь уже зарегистрирован
+        Не удалось зарегестрироваться
       </p>
       <button type="button" class="btn btn-primary mb-3" id="submit">
         Зарегистрироваться

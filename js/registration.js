@@ -16,6 +16,7 @@ async function AddRegListener() {
             var data = $('form').serializeArray();
             data = ToJsObject(data);
             var userEmail = data.email
+            console.log(data)
             Post(`/account/register`, data).then(async (resp) => {
                 if (resp.ok) {
                     let response = await resp.json()
@@ -57,6 +58,9 @@ export function ValidateForm() {
             },
             phoneNumber: {
                 phoneLength: 17
+            },
+            password: {
+                regex: '(?=.*\\d)[\\d\\w!@#$%^&*]{6,}'
             }
         }
     })
@@ -89,6 +93,14 @@ export function InitValidator() {
         element.setCustomValidity("Invalid field.");
         return false;
     }, $.validator.format("Некорректный формат телефона"));
+    $.validator.addMethod(
+        "regex",
+        function (value, element, regexp) {
+            var re = new RegExp(regexp);
+            return this.optional(element) || re.test(value);
+        },
+        "Please check your input."
+    );
     phoneMask = IMask(
         document.getElementById('phone'), {
         mask: '+{7}(000) 000-00-00'

@@ -25,7 +25,7 @@ export class PageLoader {
         query = query || ""
         $("main").empty();
         //TODO change history in other files
-        history.replaceState(null, '', url + query);
+        history.pushState(null, '', url + query);
         let email = window.localStorage.getItem('userEmail')
         this.#getCartNumber(email)
         this.#changeAuthInHeader(email)

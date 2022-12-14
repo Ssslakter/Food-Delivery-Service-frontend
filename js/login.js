@@ -46,6 +46,11 @@ function ValidateForm() {
   form.validate({
     errorPlacement: function (error, element) {
       return true
+    },
+    rules: {
+      password: {
+        regex: '(?=.*\\d)[\\d\\w!@#$%^&*]{6,}'
+      }
     }
   })
   return form.valid();
