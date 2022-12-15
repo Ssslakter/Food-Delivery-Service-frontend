@@ -21,11 +21,13 @@ export class PageLoader {
         purchase: initMakeOrder
     }
 
-    static async loadPage(url, query) {
+    static async loadPage(url, query, isBack = false, firstPage = false) {
         query = query || ""
         $("main").empty();
         //TODO change history in other files
-        history.pushState(null, '', url + query);
+        if (!isBack && !firstPage) {
+            history.pushState(null, '', url + query);
+        }
         let email = window.localStorage.getItem('userEmail')
         this.#getCartNumber(email)
         this.#changeAuthInHeader(email)

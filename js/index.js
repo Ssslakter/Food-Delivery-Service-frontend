@@ -3,13 +3,16 @@ import { Logout } from './login.js'
 
 
 $(document).ready(function () {
+  addEventListener('popstate', () => {
+    PageLoader.loadPage(location.pathname, location.search, true)
+  });
   SetNavLinkListeners();
   $('#exit').click((e) => {
     e.preventDefault();
     Logout();
   })
   //Load main page
-  PageLoader.loadPage(location.pathname, location.search);
+  PageLoader.loadPage(location.pathname, location.search, false, true);
 });
 
 function SetNavLinkListeners() {
